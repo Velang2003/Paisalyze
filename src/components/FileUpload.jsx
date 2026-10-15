@@ -3,6 +3,7 @@ import Transactions from "./Transactions.csv?url";
 import Papa from "papaparse";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import logoPrimary from "../assets/logoPrimary.png";
 
 // Conext
 import { Provider } from "../context/DataProvider";
@@ -103,6 +104,7 @@ function FileUpload() {
 
   return (
     <>
+      <img src={logoPrimary} alt="Primary Logo" style={{ width: "200px" }} />
       <input
         type="file"
         name="csvFile"

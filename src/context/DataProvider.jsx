@@ -7,6 +7,7 @@ const initialState = {
 
     rawHeaders: [],
     rawRows: [],
+
     columnMapping:{
         date: null,
         amount: null,
@@ -16,7 +17,15 @@ const initialState = {
     transactions: [],
 
     error: null,
-    skippedRows: []
+    skippedRows: [],
+
+    filters: {
+        startDate: "",
+        endDate: "",
+        category: "all",
+        // method: "all",
+        // search: ""
+    }
 };
 
 function reducer(state, action){
@@ -45,7 +54,7 @@ function reducer(state, action){
                 rawRows: action.payload.rows,
                 status: "mapping",
                 error: null
-            }
+            };
         
         case "SET_COLUMN_MAPPING":
             return {
@@ -61,14 +70,35 @@ function reducer(state, action){
                 transactions: action.payload.transactions,
                 skippedRows: action.payload.skippedRows,
                 error: null
-            }
+            };
+
+        case "SET_FILTER":
+            return{
+                ...state,
+                filters: {
+                    ...state.filters,
+                    ...action.payload
+                },
+            };
+
+        case "RESET_FILTER":
+            return {
+              ...state,
+              filters: {
+                startDate: "",
+                endDate: "",
+                category: "all",
+                // method: "all",
+                // search: "",
+              },
+            };
 
         case "SET_ERROR":
             return {
                 ...state,
                 status: "error",
                 error: action.payload
-            }
+            };
 
         default:
             return state;
