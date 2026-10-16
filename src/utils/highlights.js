@@ -24,6 +24,7 @@ function highlights() {
       const months = new Set(
         filteredTransactions.map((transaction) => transaction.date.slice(0, 7))
       );
+
     
       //   start date of earliest transaction by default else from date input
       const startDate =
@@ -77,7 +78,9 @@ function highlights() {
       const topCategory = rankedCategories[0]?.[0] ?? "N/A";
     
       const numberOfTransactions = filteredTransactions.length;
-      const highlightsProps = {totalAmount, averageMonthSpend, topCategory, numberOfTransactions};
+      const highlightsProps = {totalAmount, averageMonthSpend, topCategory, numberOfTransactions, categoryTotals, filteredTransactions};
+
+
   return highlightsProps;
 }
 
