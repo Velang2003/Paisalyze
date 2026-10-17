@@ -217,13 +217,13 @@ Global state is managed with React's built-in `useReducer` hook, exposed via Con
 
 ---
 
-## Known Limitations
+## Future Enhancements
 
-- **No persistence** — All data is held in memory. Refreshing the page clears the uploaded data and returns the user to the upload screen.
-- **Budget targets are read-only** — The budget page displays spending relative to a `savedBudgets` object that is currently empty. Budget input UI is not yet implemented.
-- **INR currency only** — Amount formatting and currency display are hardcoded to the Indian Rupee (`en-IN` locale, `INR`).
-- **No authentication or server** — The application is entirely client-side. No data is transmitted anywhere.
-- **Filter method and search are stubbed** — Payment method and description search filters exist in the state shape and utility code but are not yet exposed in the UI.
+- **Data persistence** — Persist uploaded transaction data to `localStorage` or `IndexedDB` so the session survives a page refresh.
+- **Budget input UI** — Allow users to set and save monthly budget targets per category directly within the app, replacing the current static `savedBudgets` placeholder.
+- **Multi-currency support** — Add a currency selector so the app can format amounts in currencies other than the Indian Rupee.
+- **Payment method and search filters** — Surface the existing payment method and description search filter logic (already implemented in state and utilities) through the filter UI.
+- **Data export** — Allow users to export the filtered transaction set or budget summary back to CSV.
 
 ---
 
