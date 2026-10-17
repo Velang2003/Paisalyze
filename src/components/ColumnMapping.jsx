@@ -86,8 +86,9 @@ function ColumnMapping() {
     ];
 
   return (<>
-    <section>
+    <section className="columnMapContainer">
         <h2>Map your CSV columns</h2>
+        <div className="columns">
 
         {
             fields.map(field => (
@@ -108,6 +109,7 @@ function ColumnMapping() {
                 </div>
             ))
         }
+        </div>
 
         <button onClick={handleContinue}>Validate and Continue</button>
     </section>

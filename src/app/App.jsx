@@ -19,7 +19,6 @@ import Budget from "../components/Budget";
 function App() {
   return (
     <>
-      
       {/* Body content */}
 
       <DataProvider>
@@ -35,10 +34,10 @@ function App() {
             <Route path="/dashboard" element={<Dashboard />} />
 
             {/* Transaction Section */}
-            <Route path="/transactions" element={<Transactions/>}/>
+            <Route path="/transactions" element={<Transactions />} />
 
             {/* Budget Allocation Section */}
-            <Route path="/budget" element={<Budget/>}/>
+            <Route path="/budget" element={<Budget />} />
 
             <Route path="*" element={<FileUpload />} />
           </Routes>
@@ -46,11 +45,16 @@ function App() {
       </DataProvider>
 
       <footer>
-        <img
-          src={logoSecondary}
-          alt="Secondary Logo"
-          style={{ width: "100px" }}
-        />
+          <img
+            src={logoSecondary}
+            alt="Secondary Logo"
+            style={{ width: "100px" }}
+          />
+        <div className="contactFootor">
+          <a href="mailto:velang2003@gmail.com">Mail</a>
+          <a href="https://github.com/Velang2003">GitHub</a>
+        <p>Build with ❤️ by Ashwamedha ({new Date().getFullYear()})</p> 
+        </div>
       </footer>
     </>
   );

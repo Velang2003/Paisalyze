@@ -9,7 +9,7 @@ import {
   PieChart,
   Pie,
   Cell,
-  Legend
+  Legend,
 } from "recharts";
 import Header from "./Header";
 import FilterContainer from "./FilterContainer";
@@ -32,41 +32,52 @@ function Dashboard() {
   ];
 
   const categories = [];
-  for(let key in highlightsProps.categoryTotals){
+  for (let key in highlightsProps.categoryTotals) {
     const value = highlightsProps.categoryTotals[key];
     categories.push({
       category: key,
-      amount: value
+      amount: value,
     });
   }
-  
-  // for Line chart to show month wise graph instead of per transaction 
+
+  // for Line chart to show month wise graph instead of per transaction
   const monthsName = [
-    "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
   ];
 
- const monthlyTotals = highlightsProps.filteredTransactions.reduce(
-   (totals, transaction) => {
-     const monthNumber = new Date(transaction.date).getMonth();
+  const monthlyTotals = highlightsProps.filteredTransactions.reduce(
+    (totals, transaction) => {
+      const monthNumber = new Date(transaction.date).getMonth();
 
-     const monthName = monthsName[monthNumber];
-     const paise = Math.round(transaction.amount * 100)
+      const monthName = monthsName[monthNumber];
+      const paise = Math.round(transaction.amount * 100);
 
-     totals[monthName] = (totals[monthName] || 0) + paise;
+      totals[monthName] = (totals[monthName] || 0) + paise;
 
-     return totals;
-   },
-   {}
- );
- 
- for (const month in monthlyTotals){
-  monthlyTotals[month] = monthlyTotals[month]/100;
- }
+      return totals;
+    },
+    {}
+  );
 
- const monthlyData = Object.entries(monthlyTotals).map(([month, amount])=>({
-  month, amount
- }))
+  for (const month in monthlyTotals) {
+    monthlyTotals[month] = monthlyTotals[month] / 100;
+  }
 
+  const monthlyData = Object.entries(monthlyTotals).map(([month, amount]) => ({
+    month,
+    amount,
+  }));
 
   return (
     <>
@@ -74,58 +85,59 @@ function Dashboard() {
       <FilterContainer />
       <Highlights {...highlightsProps} />
 
-      <div style={{ width: "300px", height: "200px" }}>
-        <ResponsiveContainer width="100%" height="100%">
-          <LineChart data={monthlyData}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="month" />
-            <YAxis />
-            <Tooltip />
-            <Line
-              type="monotone"
-              dataKey="amount"
-              stroke="#3B82F6"
-              strokeWidth={2}
-              dot={false}
-            />
-          </LineChart>
-        </ResponsiveContainer>
+      <div className="chartSection">
+        <div style={{ width: "49%", height: "300px" }}>
+          <ResponsiveContainer width="100%" height="100%">
+            <LineChart data={monthlyData}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="month" />
+              <YAxis />
+              <Tooltip />
+              <Line
+                type="monotone"
+                dataKey="amount"
+                stroke="#3DA35D"
+                strokeWidth={2}
+                dot={false}
+              />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+
+        <div style={{ width: "49%", height: "300px" }}>
+          <ResponsiveContainer width="100%" height="100%">
+            <PieChart>
+              <Pie
+                data={categories}
+                dataKey="amount"
+                nameKey="category"
+                outerRadius={75}
+                innerRadius={40}
+                cx="50%"
+                cy="42%"
+              >
+                {categories.map((entry, index) => (
+                  <Cell
+                    key={entry.category}
+                    fill={COLORS[index % COLORS.length]}
+                  />
+                ))}
+              </Pie>
+              <Tooltip
+                formatter={(value, name) => [
+                  `${(Number(value) / 100).toLocaleString("en-IN", {
+                    style: "currency",
+                    currency: "INR",
+                  })}`,
+                  name,
+                ]}
+              />
+
+              <Legend verticalAlign="bottom" align="center" />
+            </PieChart>
+          </ResponsiveContainer>
+        </div>
       </div>
-
-      <div style={{ width: "300px", height: "250px" }}>
-        <ResponsiveContainer width="100%" height="100%">
-          <PieChart>
-            <Pie
-              data={categories}
-              dataKey="amount"
-              nameKey="category"
-              outerRadius={75}
-              innerRadius={40}
-              cx="50%"
-              cy="42%"
-            >
-              {categories.map((entry, index) => (
-                <Cell
-                  key={entry.category}
-                  fill={COLORS[index % COLORS.length]}
-                />
-              ))}
-            </Pie>
-            <Tooltip
-              formatter={(value, name) => [
-                `${(Number(value) / 100).toLocaleString("en-IN", {
-                  style: "currency",
-                  currency: "INR",
-                })}`,
-                name,
-              ]}
-            />
-
-            <Legend verticalAlign="bottom" align="center" />
-          </PieChart>
-        </ResponsiveContainer>
-      </div>
-
       <section className="bottomNavigation">
         <p>Want the details behind these numbers?</p>
         <NavLink to={"/transactions"}>View all transactions</NavLink>

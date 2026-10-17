@@ -1,0 +1,721 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+}
+
+:root{
+    --background-light: #f0fff1;
+    --background-light-secondary: #f0fff1;
+    --button-primary-light: #054a29;
+    --text-primary-light: #155d27;
+    --text-secondary-light: #454955;
+        --background-dark: #0d2818;
+            --background-dark-secondary: #04471c;
+            --button-primary: #3DA35D;
+            --text-primary-dark: #96E072;
+}
+
+.dark{
+    --background-dark: #0d2818;
+    --background-dark-secondary: #04471c;
+    --button-primary: #3DA35D;
+    --text-primary-dark: #96E072;
+}
+
+body{
+    background-color: var(--background-light);
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer{
+    background-color: var(--background-dark-secondary);
+    width: 100vw;
+    height: 100px;
+    display: flex;
+    padding: 20px 50px;
+    justify-content: space-evenly;
+    position: fixed;
+    bottom: 0;
+    text-align: center;
+    margin: auto;
+}
+
+footer>img{
+    background-color: var(--background-light);
+    border-radius: 50px;
+}
+
+.contactFootor{
+    display: flex;
+    justify-content: space-evenly;
+    width: 50%;
+    flex-direction: column;
+    color: var(--background-light-secondary);
+    font-size: small;
+    gap: 5px;
+}
+
+.contactFootor a{
+    color: var(--background-light-secondary);
+}
+
+/* ============================================================
+   FILE UPLOAD  (FileUpload.jsx)
+   ============================================================ */
+
+.fileUpload{
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    min-height: 100vh;
+    align-items: center;
+    gap: 20px;
+    padding-bottom: 120px; /* clearance above footer */
+}
+
+.fileUpload>p{
+    color: var(--background-dark-secondary);
+    font-size: 14px;
+    text-align: center;
+    padding: 0 16px;
+}
+
+.fileUploadHeader{
+    display: flex;
+    flex-direction: column;
+    margin: 30px 50px;
+}
+
+.fileUploadHeader>img{
+    margin-bottom: -20px;
+}
+
+.fileUploadHeader>p{
+    color: var(--text-secondary-light);
+}
+
+.fileUploadArea{
+    border: 2px dashed #054a29;
+    background-color: white;
+    width: 90vw;
+    max-width: 600px;
+    height: auto;
+    min-height: 200px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 30px;
+    padding: 40px 20px;
+    border-radius: 12px;
+}
+
+.fileUploadArea>input{
+    display: none;
+}
+
+/* ============================================================
+   PRIMARY BUTTON STYLE
+   ============================================================ */
+.file-upload-btn,
+.fileUploadArea>button,
+.columnMapContainer>button,
+header>a>button,
+.filterContainer>div>button{
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--button-primary-light);
+    color: #ffffff;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+    white-space: nowrap;
+}
+
+.file-upload-btn:hover,
+.fileUploadArea>button:hover,
+.columnMapContainer>button:hover,
+header>a>button:hover,
+.filterContainer>div>button:hover{
+    background-color: var(--button-primary);
+}
+
+
+/* ============================================================
+   COLUMN MAPPING SECTION
+   ============================================================ */
+
+.columnMapContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    text-align: center;
+    gap: 20px;
+    padding: 20px 16px 120px;
+}
+
+.columnMapContainer>h2{
+    color: var(--text-primary-light);
+    font-weight: 400;
+}
+
+.columnMapContainer>div{
+    text-align: left;
+    gap: 24px;
+    display: flex;
+    flex-direction: column;
+    padding: 30px 24px;
+    border: 1px solid var(--background-dark-secondary);
+    border-radius: 15px;
+    background-color: white;
+    width: 100%;
+    max-width: 480px;
+}
+
+.columnMapContainer label{
+    color: var(--background-dark-secondary);
+    margin-right: 15px;
+    font-weight: 550;
+}
+
+.columnMapContainer select{
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: var(--button-primary-light);
+    color: var(--background-light-secondary);
+}
+
+
+/* ============================================================
+   HEADER  (Dashboard / Transaction / Budget)
+   ============================================================ */
+
+header{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 12px 16px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+header>nav{
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+header>nav>a{
+    text-decoration: none;
+    color: var(--text-primary-light);
+    padding-bottom: 10px;
+    font-size: 15px;
+}
+
+header>nav>a.active{
+    border-bottom: 3px solid var(--button-primary);
+    color: var(--background-dark-secondary);
+}
+
+/* ============================================================
+   FILTER CONTAINER
+   ============================================================ */
+
+.filterContainer{
+    display: flex;
+    flex-wrap: wrap;
+    background-color: white;
+    min-height: 80px;
+    width: 95vw;
+    max-width: 1000px;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 0 auto 24px;
+    border: 0.5px solid var(--text-primary-dark);
+    border-radius: 15px;
+    color: var(--background-dark-secondary);
+    padding: 12px;
+    gap: 12px;
+}
+
+.filterContainer>div{
+    align-items: center;
+    display: flex;
+}
+
+.filterContainer>label{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 13px;
+}
+
+.filterContainer input,
+.filterContainer select{
+    border: 1px solid var(--button-primary);
+    border-radius: 5px;
+    padding: 5px;
+    background-color: var(--background-light);
+    max-width: 160px;
+}
+
+/* ============================================================
+   HIGHLIGHTS / OVERVIEW
+   ============================================================ */
+
+.overviewContainer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+    width: 95%;
+    max-width: 1000px;
+    margin: 0 auto 24px;
+}
+
+.overviewContainer>.highlights{
+    background-color: white;
+    padding: 20px 30px;
+    border-radius: 15px;
+    border: 1px solid var(--text-primary-dark);
+    flex: 1 1 160px;
+    min-width: 140px;
+}
+
+.overviewContainer p{
+    color: var(--text-primary-light);
+    margin-bottom: 5px;
+    font-size: 13px;
+}
+
+.overviewContainer h1{
+    font-weight: 600;
+    color: var(--text-primary-light);
+    font-size: clamp(1.2rem, 4vw, 2rem);
+}
+
+/* ============================================================
+   DASHBOARD GRAPHS
+   ============================================================ */
+
+.chartSection{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    width: 95%;
+    margin: 0 auto 24px;
+    gap: 20px;
+    max-width: 1000px;
+}
+
+.chartSection>div{
+    background-color: white;
+    padding: 10px;
+    border: 1px solid var(--text-primary-dark);
+    border-radius: 8px;
+    flex: 1 1 280px;
+    min-width: 260px;
+    overflow-x: auto;
+}
+
+/* ============================================================
+   BOTTOM NAVIGATION
+   ============================================================ */
+
+.bottomNavigation{
+    display: flex;
+    max-width: 1000px;
+    width: 90%;
+    margin: 0 auto 16px;
+    height: 50px;
+    align-items: center;
+    justify-content: space-evenly;
+    border: 1px solid var(--text-primary-dark);
+    border-radius: 5px;
+    background-color: white;
+    color: var(--background-dark-secondary);
+}
+
+.bottomNavigation>a{
+    color: var(--text-primary-light);
+    text-decoration: none;
+    padding: 4px 8px;
+    border-bottom: 1px solid var(--button-primary);
+    font-size: 14px;
+}
+
+/* ============================================================
+   TRANSACTIONS TABLE
+   ============================================================ */
+
+.tableData{
+    width: 95vw;
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: white;
+    border-radius: 10px;
+    overflow-x: auto;           /* horizontal scroll on tiny screens */
+    -webkit-overflow-scrolling: touch;
+}
+
+.tableData>h3{
+    color: var(--text-primary-light);
+    height: 40px;
+    display: flex;
+    padding: 10px 24px;
+    align-items: center;
+    font-size: 16px;
+}
+
+.tableData>table {
+    align-items: center;
+    width: 100%;
+    text-align: center;
+    min-width: 480px;           /* keep columns legible before scroll kicks in */
+}
+
+.tableData>table>thead>tr>th{
+    background-color: var(--button-primary);
+    padding: 10px;
+    color: var(--background-light);
+    font-weight: 400;
+    font-size: clamp(14px, 2.5vw, 20px);
+}
+
+.tableData>table>tbody>tr>td{
+    padding: 10px;
+    border-bottom: 1px solid var(--text-primary-dark);
+    font-size: clamp(12px, 2vw, 15px);
+}
+
+/* ============================================================
+   BUDGET SECTION
+   ============================================================ */
+
+.budgetContainer{
+    display: flex;
+    flex-direction: column;
+    max-width: 1000px;
+    width: 95%;
+    margin: 0 auto;
+    padding-bottom: 120px;
+}
+
+.budgetContainer>label,
+.budgetContainer>div{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 5px 10px;
+}
+
+.budgetContainer>div>select{
+    border: 1px solid var(--text-primary-dark);
+    border-radius: 5px;
+    padding: 10px;
+    background-color: var(--text-primary-dark);
+    font-size: 15px;
+    max-width: 100%;
+}
+
+.budgetContainer>section{
+    background-color: white;
+    padding: 24px;
+    margin: 10px 0;
+    border: 1px solid var(--text-primary-dark);
+    border-radius: 15px;
+}
+
+.budgetContainer>section>.budgetHighlights{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin: 10px 0;
+    font-size: clamp(14px, 3vw, 20px);
+    gap: 12px;
+    font-weight: 500;
+}
+
+.budgetContainer>section>h3{
+    margin: 20px 0;
+    font-size: clamp(15px, 3vw, 18px);
+}
+
+.budgetContainer>section>div{
+    margin: 10px;
+    overflow-x: auto;
+}
+
+/* ============================================================
+   PAGE WRAPPER  (adds footer clearance on all pages)
+   ============================================================ */
+.pageContent{
+    padding-bottom: 120px;
+}
+
+/* ============================================================
+   RESPONSIVE — TABLET  (max-width: 768px)
+   ============================================================ */
+@media (max-width: 768px) {
+    footer{
+        height: auto;
+        padding: 12px 20px;
+        gap: 10px;
+    }
+
+    footer>img{
+        width: 60px !important;
+    }
+
+    .contactFootor{
+        width: auto;
+        font-size: 11px;
+    }
+
+    .fileUploadHeader{
+        margin: 20px 24px;
+    }
+
+    .fileUploadHeader>img{
+        width: 150px !important;
+    }
+
+    .fileUploadArea{
+        width: 92vw;
+        gap: 20px;
+        padding: 30px 16px;
+    }
+
+    header{
+        padding: 10px;
+        gap: 8px;
+    }
+
+    header>nav{
+        gap: 12px;
+    }
+
+    header>nav>a{
+        font-size: 14px;
+    }
+
+    .filterContainer{
+        flex-direction: column;
+        align-items: flex-start;
+        height: auto;
+        padding: 16px;
+        gap: 14px;
+    }
+
+    .filterContainer input,
+    .filterContainer select{
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .filterContainer>div{
+        width: 100%;
+    }
+
+    .overviewContainer{
+        gap: 12px;
+    }
+
+    .overviewContainer>.highlights{
+        padding: 16px 20px;
+        flex: 1 1 120px;
+    }
+
+    .chartSection>div{
+        flex: 1 1 100%;
+        min-width: 0;
+    }
+
+    .bottomNavigation{
+        width: 95%;
+        font-size: 13px;
+    }
+
+    .columnMapContainer>div{
+        padding: 24px 16px;
+    }
+
+    .budgetContainer>section{
+        padding: 16px;
+    }
+
+    .budgetContainer>section>.budgetHighlights{
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+}
+
+/* ============================================================
+   RESPONSIVE — MOBILE  (max-width: 480px)
+   ============================================================ */
+@media (max-width: 480px) {
+    footer{
+        padding: 10px 12px;
+    }
+
+    footer>img{
+        width: 48px !important;
+    }
+
+    .contactFootor{
+        font-size: 10px;
+        gap: 4px;
+    }
+
+    .fileUploadHeader{
+        margin: 16px;
+        align-items: center;
+    }
+
+    .fileUploadHeader>img{
+        width: 120px !important;
+    }
+
+    .fileUploadHeader>p{
+        font-size: 13px;
+        text-align: center;
+    }
+
+    .fileUpload>p{
+        font-size: 12px;
+    }
+
+    .fileUploadArea{
+        width: 95vw;
+        min-height: 160px;
+        padding: 24px 12px;
+        gap: 16px;
+    }
+
+    header{
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px 14px;
+    }
+
+    header>nav{
+        width: 100%;
+        gap: 8px;
+    }
+
+    header>nav>a{
+        font-size: 13px;
+    }
+
+    header>a>button{
+        font-size: 12px;
+        padding: 8px 14px;
+    }
+
+    .filterContainer{
+        width: 98vw;
+        border-radius: 10px;
+        padding: 12px;
+    }
+
+    .filterContainer>label{
+        font-size: 12px;
+        width: 100%;
+    }
+
+    .filterContainer>div>button{
+        font-size: 12px;
+        padding: 8px 14px;
+        width: 100%;
+    }
+
+    .overviewContainer{
+        width: 98%;
+    }
+
+    .overviewContainer>.highlights{
+        flex: 1 1 100px;
+        padding: 14px 16px;
+    }
+
+    .overviewContainer h1{
+        font-size: 1.3rem;
+    }
+
+    .chartSection{
+        width: 98%;
+    }
+
+    .chartSection>div{
+        padding: 8px;
+        border-radius: 8px;
+    }
+
+    .bottomNavigation{
+        width: 98%;
+        gap: 4px;
+    }
+
+    .bottomNavigation>a{
+        font-size: 12px;
+        padding: 4px;
+    }
+
+    .tableData{
+        width: 98vw;
+        border-radius: 8px;
+    }
+
+    .tableData>h3{
+        font-size: 14px;
+        padding: 10px 14px;
+    }
+
+    .columnMapContainer{
+        padding: 16px 12px 120px;
+    }
+
+    .columnMapContainer>div{
+        padding: 20px 14px;
+        gap: 18px;
+    }
+
+    .columnMapContainer label{
+        font-size: 14px;
+    }
+
+    .budgetContainer{
+        width: 98%;
+    }
+
+    .budgetContainer>section{
+        padding: 14px;
+        margin: 8px 0;
+    }
+
+    .budgetContainer>div>select{
+        font-size: 13px;
+        padding: 8px;
+    }
+
+    .file-upload-btn,
+    .fileUploadArea>button{
+        font-size: 13px;
+        padding: 10px 18px;
+    }
+}

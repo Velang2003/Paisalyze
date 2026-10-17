@@ -26,6 +26,8 @@ function FilterContainer() {
 
   return (
     <>
+    <section className="filterContainer">
+
       <label>
         Date Range
         <input
@@ -56,9 +58,13 @@ function FilterContainer() {
         </select>
       </label>
 
+          <div>
+
       <button
         onClick={()=>dispatch({type: "RESET_FILTER"})}
-      >Reset Filters</button>
+        >Reset Filters</button>
+        </div>
+    </section>
     </>
   );
 }

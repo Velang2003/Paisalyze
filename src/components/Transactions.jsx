@@ -19,11 +19,9 @@ function Transactions() {
     <>
       <Header />
       <FilterContainer />
-      <div>Transactions</div>
-      <div
-        className="tableData"
-        style={{ height: "50vh", overflow: "auto", border: "1px solid #ccc", width:"80vw" }}
-      >
+      <div className="tableData" style={{ height: "70vh", 
+    overflow: "auto" }}>
+      <h3 style={{position:"sticky"}}>Transactions</h3>
         <table>
           <thead style={{ position: "sticky", top: 0, background: "#fff" }}>
             <tr>
