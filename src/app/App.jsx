@@ -48,7 +48,6 @@ function App() {
           <img
             src={logoSecondary}
             alt="Secondary Logo"
-            style={{ width: "100px" }}
           />
         <div className="contactFootor">
           <a href="mailto:velang2003@gmail.com">Mail</a>
