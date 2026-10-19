@@ -217,9 +217,10 @@ Global state is managed with React's built-in `useReducer` hook, exposed via Con
 
 ---
 
-## Future Enhancements
+## Features implemented
+- **Data persistence** — Persist uploaded transaction data to `localStorage` so the session survives a page refresh.
 
-- **Data persistence** — Persist uploaded transaction data to `localStorage` or `IndexedDB` so the session survives a page refresh.
+## Future Enhancements
 - **Budget input UI** — Allow users to set and save monthly budget targets per category directly within the app, replacing the current static `savedBudgets` placeholder.
 - **Multi-currency support** — Add a currency selector so the app can format amounts in currencies other than the Indian Rupee.
 - **Payment method and search filters** — Surface the existing payment method and description search filter logic (already implemented in state and utilities) through the filter UI.
