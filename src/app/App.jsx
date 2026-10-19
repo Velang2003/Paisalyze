@@ -16,11 +16,13 @@ import DataProvider from "../context/DataProvider";
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Budget from "../components/Budget";
 
+import { Analytics } from "@vercel/analytics/react";
+
 function App() {
   return (
     <>
       {/* Body content */}
-
+      <Analytics />
       <DataProvider>
         <BrowserRouter>
           <Routes>
@@ -45,14 +47,11 @@ function App() {
       </DataProvider>
 
       <footer>
-          <img
-            src={logoSecondary}
-            alt="Secondary Logo"
-          />
+        <img src={logoSecondary} alt="Secondary Logo" />
         <div className="contactFootor">
           <a href="mailto:velang2003@gmail.com">Mail</a>
           <a href="https://github.com/Velang2003">GitHub</a>
-        <p>Build with ❤️ by Ashwamedha ({new Date().getFullYear()})</p> 
+          <p>Build with ❤️ by Ashwamedha ({new Date().getFullYear()})</p>
         </div>
       </footer>
     </>
