@@ -1,17 +1,60 @@
-import { useContext, useState, useMemo } from "react";
+import { useContext, useState, useMemo, useEffect } from "react";
 import { Provider } from "../context/DataProvider";
 import calculateBudget from "../utils/budget.js";
 import Header from "./Header.jsx";
 
 function Budget() {
   const { state } = useContext(Provider);
+  const [savedBudgets, setBudget] = useState([]);
+  
+  // const savedBudgets = {
+  //   // dummy data
+  //   "2026-10": {
+  //     totalBudget: 50000,
+  //     categories: {
+  //       Bills: 5000,
+  //       Education: 1000,
+  //       Entertainment: 5000,
+  //       Food: 5000,
+  //     },
+  //   },
+  // };
 
-  // Replace this with your saved budget state when implemented.
-  const savedBudgets = {};
+function handleBudgetAllocation(event, categoryName, month) {
+  const budget = Number(event.target.value);
+
+  setBudget((prevData) => {
+    // Get existing categories or initialize an empty object
+    const existingCategories = prevData[month]?.categories || {};
+
+    // Update the selected category
+    const updatedCategories = {
+      ...existingCategories,
+      [categoryName]: budget,
+    };
+
+    // Calculate total budget
+    const totalBudget = Object.values(updatedCategories).reduce(
+      (sum, amount) => sum + amount,
+      0
+    );
+
+    // Update the state
+    return {
+      ...prevData,
+      [month]: {
+        ...prevData[month],
+        totalBudget,
+        categories: updatedCategories,
+      },
+    };
+  });
+}
+
 
   const budgetData = useMemo(
     () => calculateBudget(state.transactions, savedBudgets),
-    [state.transactions]
+    [state.transactions, savedBudgets]
   );
 
   // Default to the latest available month.
@@ -63,13 +106,31 @@ function Budget() {
             {selectedBudget.categories.map((category) => (
               <div key={category.name} className="budgets">
                 <h4>{category.name}</h4>
+                <input
+                  type="number"
+                  value={
+                    savedBudgets[selectedBudget.month]?.categories?.[
+                      category.name
+                    ] ?? ""
+                  }
+                  onChange={(event) =>
+                    handleBudgetAllocation(
+                      event,
+                      category.name,
+                      selectedBudget.month
+                    )
+                  }
+                />
                 <p>Budget: ₹{category.budget}</p>
                 <p>Spent: ₹{category.spent}</p>
-                <p>Remaining: ₹{category.remaining}</p>
+                <p>Remaining: ₹{category.remaining.toLocaleString("en-IN")}</p>
                 <p>Budget used: {category.percentageUsed}%</p>
                 <p>Status: {category.status}</p>
               </div>
             ))}
+
+            <button className="budgetSaveBtn">Save Budget</button>
+            <button className="budgetResetBtn">Reset</button>
           </section>
         ) : (
           <p>
