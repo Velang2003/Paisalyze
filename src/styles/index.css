@@ -302,9 +302,13 @@ header>nav>a.active{
 }
 
 .overviewContainer h1{
+    /* font-size: clamp(0.85rem, 2vw, 2rem); */
+        word-break: break-word;
+        /* wrap if still too long */
+        overflow-wrap: break-word;
     font-weight: 600;
     color: var(--text-primary-light);
-    font-size: clamp(1.2rem, 4vw, 2rem);
+    font-size: clamp(0.85rem, 3vw, 2rem);
 }
 
 /* ============================================================
@@ -654,7 +658,10 @@ header>nav>a.active{
     }
 
     .overviewContainer h1{
-        font-size: 1.3rem;
+        font-size: clamp(0.85rem, 2vw, 2rem);
+            word-break: break-word;
+            /* wrap if still too long */
+            overflow-wrap: break-word;
     }
 
     .chartSection{

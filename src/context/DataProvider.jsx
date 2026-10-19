@@ -1,4 +1,4 @@
-import { createContext, useReducer } from "react"
+import { createContext, useEffect, useReducer } from "react"
 
 export const Provider = createContext(null);
 
@@ -106,7 +106,39 @@ function reducer(state, action){
 }
 
 function DataProvider({children}) {
-    const [state, dispatch] = useReducer(reducer, initialState);
+    const [state, dispatch] = useReducer(reducer, initialState, ()=>{
+        try{
+            const saved = localStorage.getItem("paisalyze_transactions");
+            if(saved){
+                const parsed = JSON.parse(saved);
+                return{
+                    ...initialState,
+                    transactions: parsed.transactions ?? [],
+                    status: parsed.transactions?.length > 0 ? "ready" : "idle"
+                };
+            }
+        }catch{
+            
+        }
+        return initialState;
+    });
+
+    useEffect(()=>{
+        try{
+            if(state.transactions.length > 0){
+                localStorage.setItem(
+                  "paisalyze_transactions",
+                  JSON.stringify({ transactions: state?.transactions })
+                );
+            }else{
+                localStorage.removeItem("paisalyze_transactions");
+            }
+        }catch{
+           
+        }
+    }, [state.transactions]);
+
+
   return (
         <Provider value={{state, dispatch}}>
             {children}
